@@ -1,16 +1,13 @@
-﻿using Microsoft.ApplicationInsights;
-using Microsoft.ApplicationInsights.DataContracts;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace AppInsightsAPIExample.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class WeatherForecastController : ControllerBase
     {
 
@@ -39,20 +36,5 @@ namespace AppInsightsAPIExample.Controllers
             .ToArray();
         }
 
-        [HttpPost]
-        public int Post(int denomintor)
-        {
-            int total = 0;
-            try
-            {
-                total = 1000 / denomintor;
-            }
-            catch(Exception ex)
-            {
-                throw ex;
-            }
-            return total;
-
-        }
     }
 }

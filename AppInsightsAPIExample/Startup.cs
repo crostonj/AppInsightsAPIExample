@@ -30,6 +30,7 @@ namespace AppInsightsAPIExample
             services.AddApplicationInsightsTelemetry(Configuration["APPLICATIONINSIGHTS_CONNECTION_STRING"]);
             services.AddSingleton<ITelemetryInitializer, MyTelemetryInitializer>();
             services.AddSingleton<ITelemetryInitializer, HttpContextRequestTelemetryInitializer>();
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -44,12 +45,18 @@ namespace AppInsightsAPIExample
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
+            app.UseAuthorization();
+            
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }
