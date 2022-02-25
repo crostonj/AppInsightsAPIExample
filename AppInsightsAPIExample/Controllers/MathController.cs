@@ -31,14 +31,7 @@ namespace AppInsightsAPIExample.Controllers
         {
             var mathy = denomintor;
 
-            try
-            {
-                mathy.Answer = 1000 / mathy.Denominator;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            mathy.Answer = 1000 / mathy.Denominator;
             
             return mathy;
 
